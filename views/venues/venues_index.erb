@@ -1,0 +1,13 @@
+
+<p>
+  <a href="/venues/new">Add New Venue</a>
+</p>
+
+<% @all_venues.each do |u| %>
+  <%#
+    So here, `u` is a User object (meaning it's an *instance* of the
+    User class). So we can run *instance* methods on `u`.
+  %>
+
+  <p>
+    <a href="/artists/<%= u.id %>"><%= u.name %></a>

@@ -1,0 +1,9 @@
+development:
+  database: database.db
+  adapter: sqlite3
+
+test:
+  database: database_test.db
+  adapter: sqlite3
+
+# Indentation matters!
