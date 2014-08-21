@@ -4,7 +4,7 @@
   The request created by this form's submission will go to
   "/users/:id/edit" and the HTTP verb will be "post".
 -->
-<form action="/artists/<%= @artist.id %>/update" method="post">
+<form action="/artist/<%= @artist.id %>/update" method="post">
   <p>Name: <input type="text" name="name" value="<%= @artist.name %>"></p>
   
   <!--

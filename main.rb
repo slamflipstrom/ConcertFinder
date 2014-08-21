@@ -15,6 +15,8 @@ require_relative "./models/artist.rb"
 require_relative "./models/event.rb"
 require_relative "./models/venue.rb"
 
+
+
 #TODO
 # Index
 
@@ -23,62 +25,65 @@ get "/" do
   erb :home
 end
 
+binding.pry
+
 get "/artist/index" do
   @all_artists = Artist.all # This is a class-method that we made.
-  erb :artists_index
+  erb :"artists/artists_index"
 end
 
 # New
 get "/artist/new" do
-  erb :artists_new  
+  erb :"artists/artists_new"  
 end
 
 # Create
 post "/artist/create" do
   @artist = Artist.create({name: params[:name]})
-  erb :artists_create
+  erb :"artists/artists_create"
 end
+
+
 
 # Edit
 get "/artist/:id/edit" do
   @all_artists = Artist.all
   @artist = Artist.find(params[:id])
-  erb :artists_edit
+  erb :"artists/artists_edit"
 end
 
 # Update
 post "/artist/:id/update" do
   @artist = Artist.find(params[:id])
   @artist.update_attributes({id: params[:id], name: params[:name]})
-  end
   
-#   erb :artists_update
-# end
+  erb :"artists/artists_update"
+end
 
 # Delete
 get "/artist/:id/delete" do
   Artist.find(params[:id]).delete
-  erb :artists_delete
+  erb :"artists/artists_delete"
 end
 
 # Show
 get "/artist/:id" do
   @artist = Artist.find(params[:id])
-  erb :artists_show
+  erb :"artists/artists_show"
 end
 
 # -------------------------------------------------------------------
 
 # Index
-get "/events/index" do
-  @all_events = Event.all
-  erb :events_index
+get "/artist/:id/events/index" do
+  @all_events = Event.user
+  erb :"events/events_index"
 end
 
 # New
-get "/events/new" do
-  @all_events = Event.all
-  erb :events_new
+get "/artist/:id/events/new" do
+  @all_events = Event.user
+  erb :"events/events_new"
 end
 
 # TODO Consider adding
@@ -95,34 +100,42 @@ end
 # end
 
 # Create
-post "/events/create" do
-  @event = Event.create({title: params[:title], venue_name: params[:venue_name], artist_name: params[:artist_name]})
-  erb :events_create
+post "/artist/:id/events/create" do
+  @event = Event.create({title: params[:title], venue_name: params[:venue_name]})
+  erb :"events/events_create"
 end
 
 # Edit
-get "/events/:id/edit" do
+get "/artist/:id/events/:id/edit" do
   @event = Event.find(params[:id])
-  erb :events_edit
+  @venues = @event.venue
+  erb :"events/events_edit"
 end
 
 # Update
-post "/events/:id/update" do
+post "/artist/:id/events/:id/update" do
   @event = Event.find(params[:id])
-  @event.update_attributes({title: params[:title], venue_name: params[:venue_name], artist_name: params[:artist_name]})
-  erb :events_update
+  @event.update_attributes({title: params[:title], venue_name: params[:venue_name]})
+  erb :"events/events_update"
 end
 
 # Delete
-get "/events/:id/delete" do
+get "/artist/:id/events/:id/delete" do
   Event.find(params[:id]).delete
-  erb :events_delete
+  erb :"events/events_delete"
 end
 
 # Show
-get "/events/:id" do
+get "/artist/:id/events/:id" do
   @event = Event.find(params[:id])
-  erb :events_show
+  erb :"events/events_show"
+end
+
+# Show all events, regardless of user
+
+get "/events" do
+  @all_events = Event.all
+  erb :"events/events_all"
 end
 
 # -------------------------------------------------------------------
@@ -130,41 +143,41 @@ end
 # Index
 get "/venues/index" do
   @all_venues = Venue.all # This is a class-method that we made.
-  erb :venues_index
+  erb :"venues/venues_index"
 end
 
 # New
 get "/venues/new" do
-  erb :venues_new
+  erb :"venues/venues_new"
 end
 
 # Create
-post "/venuess/create" do
+post "/venues/create" do
   @venues = Venue.create({name: params[:name], city: params[:city], country: params[:country]})
-  erb :venues_create
+  erb :"venues/venues_create"
 end
 
 # Edit
 get "/venues/:id/edit" do
   @venues = Venue.find(params[:id])
-  erb :venues_edit
+  erb :"venues/venues_edit"
 end
 
 # Update
 post "/venues/:id/update" do
   @venues = Venue.find(params[:id])
   @venues.update_attributes({name: params[:name], city: params[:city], country: params[:country]})
-  erb :venues_update
+  erb :"venues/venues_update"
 end
 
 # Delete
 get "/venues/:id/delete" do
   Venue.find(params[:id]).delete
-  erb :venues_delete
+  erb :"venues/venues_delete"
 end
 
 # Show
 get "/venues/:id" do
   @venues = Venue.find(params[:id])
-  erb :venues_show
+  erb :"venues/venues_show"
 end

@@ -4,10 +4,9 @@
   The request created by this form's submission will go to
   "/users/:id/edit" and the HTTP verb will be "post".
 -->
-<form action="/events/<%= @event.id %>/update" method="post">
+<form action="/artist/:id/events/<%= @event.id %>/update" method="post">
   <p>Event Title: <input type="text" name="title" value="<%= @event.title %>"></p>
-  <p>Artist: <input type="text" name="artist_name" value="<%= @event.artist_name %>"></p>
-  <p>Venue: <input type="text" name="venue_name" value="<%= @event.venue_name %>"></p>
+  <p>Venue: <input type="text" name="venue_name" value="<%= @venues.name %>"></p>
   
   <!--
     The values that this form submits will be stored in a
