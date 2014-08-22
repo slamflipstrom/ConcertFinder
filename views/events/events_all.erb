@@ -1,5 +1,15 @@
-<p>
-  <a href="/artist/:id/events/new">Add New Event</a>
+<p>  
+  
+  <form action="/artist/:id/events/:id" method="get">
+  <select name="artist_list">
+  <% @all_artists.each do |r| %>
+  <option value="<%= r.id %>"><%= r.name %></option>
+    <% end %>
+  </select>
+  
+<input type="submit">
+</form>
+
 </p>
 
 <% @all_events.each do |u| %>

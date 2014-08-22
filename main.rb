@@ -1,20 +1,13 @@
+require "rubygems"
+require "bundler"
 
-require "pry"
-
-require "sinatra"
-require "sinatra/reloader"
-require "sinatra/activerecord"
-
-require "sqlite3"
-
-# require "bandsintown"
+Bundler.require
 
 # Bandsintown.app_id = 'YOUR_APP_ID'
 
 require_relative "./models/artist.rb"
 require_relative "./models/event.rb"
 require_relative "./models/venue.rb"
-
 
 
 #TODO
@@ -135,6 +128,7 @@ end
 
 get "/events" do
   @all_events = Event.all
+  @all_artists = Artist.all
   erb :"events/events_all"
 end
 
