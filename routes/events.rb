@@ -4,28 +4,14 @@ get "/artist/:id/events/index" do
   erb :"events/events_index"
 end
 
-# New
+# New - Shows form to create new Event
 get "/artist/:id/events/new" do
-  @all_events = Event.user
   erb :"events/events_new"
 end
 
-# TODO Consider adding
-# get "/events/new_plus_venues" do
-#   erb :event_new_plus_venues
-# end
-
-# TODO Consider adding8
-# event "/events/create_plus_venues" do
-#   @event = Event.create({title: params[:title], venue_id: params[:venue_id]})
-#   @event.create_venue({name: params[:venue_name], city: params[:city]})
-#   @event.save
-#   erb :event_create_plus_venues
-# end
-
 # Create
-post "/artist/:id/events/create" do
-  @event = Event.create({title: params[:title], venue_name: params[:venue_name]})
+post "/events/create" do
+  @event = Event.create({title: params[:title], venue_name: params[:venue_name], artist_name: params[:artist_name]})
   erb :"events/events_create"
 end
 
@@ -55,6 +41,20 @@ get "/artist/:id/events/:id" do
   erb :"events/events_show"
 end
 
+# TODO Consider adding
+# get "/events/new_plus_venues" do
+#   erb :event_new_plus_venues
+# end
+
+# TODO Consider adding8
+# event "/events/create_plus_venues" do
+#   @event = Event.create({title: params[:title], venue_id: params[:venue_id]})
+#   @event.create_venue({name: params[:venue_name], city: params[:city]})
+#   @event.save
+#   erb :event_create_plus_venues
+# end
+
+
 # Show all events, regardless of user
 
 get "/events" do
@@ -62,3 +62,17 @@ get "/events" do
   @all_artists = Artist.all
   erb :"events/events_all"
 end
+
+# New Event for a pre-existing Artist
+get "/artist/:id/events/new_plus_artist" do
+  @artist = Artist.find(artist_list: params[:id])
+  erb :"events/new_plus_artist"
+end
+
+# Create Event for pre-existing Artist
+post "/artist/:id/events/create_plus_artist" do
+  @artist = Artist.find(params[:id]) 
+  @event = Event.create({title: params[:title], venue_name: params[:venue_name], artist_name: params[:artist_name]})
+  erb :"events/create_plus_artist"
+end
+

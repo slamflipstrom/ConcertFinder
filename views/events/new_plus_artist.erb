@@ -1,0 +1,17 @@
+<h1> Add a new event for <%= @artist.name %></h1>
+
+<form action="/artist/:id/events/create_plus_artist" method="post">
+ <p>Event Title: <input type="text" name="title"></p>
+ <p>Venue Name: <input type="text" name="venue_name"></p>
+  
+  <!--
+    The values that this form submits will be stored in a
+    Ruby Hash called `params`. Like any Hash, you can get the 
+    values by accessing a "key" in the Hash.
+    
+    For example, you'll be able to do `params[:name]` or
+    `params[:age]`. But you can't do that yet! We have to submit
+    the form first.
+  -->
+    
+    <input type="submit">

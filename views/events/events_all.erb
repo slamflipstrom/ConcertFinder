@@ -1,24 +1,42 @@
+<h1> Events: </h1>
+
+
+<ul>
+  
+  <% @all_events.each do |u| %>
+    <%#
+      So here, `u` is a User object (meaning it's an *instance* of the
+      User class). So we can run *instance* methods on `u`.
+    %>
+
+
+    <li><a href="/artist/<%= u.artist_id %>/events/<%= u.id %>"><%= u.title %></a></li>
+    
+  <% end %>
+    
+</ul>
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    
 <p>  
   
-  <form action="/artist/:id/events/:id" method="get">
-  <select name="artist_list">
-  <% @all_artists.each do |r| %>
-  <option value="<%= r.id %>"><%= r.name %></option>
-    <% end %>
-  </select>
-  
-<input type="submit">
-</form>
-
-˜</p>
-
-<% @all_events.each do |u| %>
-  <%#
-    So here, `u` is a User object (meaning it's an *instance* of the
-    User class). So we can run *instance* methods on `u`.
-  %>
-
-  <p>
-    <a href="/artist/<%= u.artist_id %>/events/<%= u.id %>"><%= u.title %></a>
+<h3>Add an Event for Existing Artist:</h3>
+    <form action="/artist/:id/events/new_plus_artist" method="get">
+      <select name="artist_list">
+        <% @all_artists.each do |r| %>
+        <option value="<%= r.id %>"><%= r.name %></option>
+        <% end %>
+      </select>
+      <input type="submit">
+    </form>
     
-    <% end %>
+<h3>Add an Event for New Artist:</h3>
+
+<form action="/events/create" method="post">
+ <p>Event Title: <input type="text" name="title"></p>
+ <p>Venue Name: <input type="text" name="venue_name"></p>
+ <p>Artist: <input type="text" name="artist_name"></p>
+ 
+ <input type="submit">
+
+ </p>
