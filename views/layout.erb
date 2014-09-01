@@ -8,10 +8,35 @@
   
   <link rel="stylesheet" href="/normalize.css" type="text/css" media="screen" charset="utf-8">
   <link rel="stylesheet" href="/global.css" type="text/css" media="screen" charset="utf-8">
+  <link href='http://fonts.googleapis.com/css?family=Damion' rel='stylesheet' type='text/css'>
+  
 </head>
 
 <body>
+  
+  <header>
+  
+    <div id="logo">
+      <h1><a href="http://thawing-cliffs-2476.herokuapp.com/" title="Concert Finder" rel="home">Concert Finder</h1></a>
+    </div>
+    
+    <div id="links">
+      <ul>
+        <li><a href="http://thawing-cliffs-2476.herokuapp.com/artist/index">Artists</a></li>
+        <li><a href="http://thawing-cliffs-2476.herokuapp.com/events">Events</a></li>
+        <li><a href="http://thawing-cliffs-2476.herokuapp.com/venues/index">Venues</a></li>
+      </ul>
+    </div>
+    
+  </header>
+  
+  <div id="container">
+  
   <%= yield %>
+  
+  </div>
+  
+  
 </body>
 
 </html>
