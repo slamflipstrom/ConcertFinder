@@ -1,5 +1,5 @@
 body{
-  background-color: #585464;
+  background-color: #FFC300;
 }
 
 header{
@@ -54,13 +54,18 @@ header #links a{
   text-decoration: none;
 }
 
-#body_image ul li a{
+#home_page ul li a{
   font-family: 'Exo', sans-serif;
-  color: #FFC300;
+  color: #000;
 }
 
-#body_image h1{
+#home_page h1{
   font-family: 'Exo', sans-serif;
 }
 
+#home_page img{
+    width: 100%;
+    height: auto;
+    margin-top: -7px;
+}
 
