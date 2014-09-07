@@ -16,27 +16,27 @@ post "/events/create" do
 end
 
 # Edit
-get "/artist/:id/events/:id/edit" do
+get "events/:id/edit" do
   @event = Event.find(params[:id])
   @venues = @event.venue
   erb :"events/events_edit"
 end
 
 # Update
-post "/artist/:id/events/:id/update" do
+post "/events/:id/update" do
   @event = Event.find(params[:id])
   @event.update_attributes({title: params[:title], venue_name: params[:venue_name]})
   erb :"events/events_update"
 end
 
 # Delete
-get "/artist/:id/events/:id/delete" do
+get "/events/:id/delete" do
   Event.find(params[:id]).delete
   erb :"events/events_delete"
 end
 
 # Show
-get "/artist/:id/events/:id" do
+get "/artist/:id/events" do
   @event = Event.find(params[:id])
   erb :"events/events_show"
 end
@@ -63,16 +63,16 @@ get "/events" do
   erb :"events/events_all"
 end
 
-# New Event for a pre-existing Artist
-get "/artist/:id/events/new_plus_artist" do
-  @artist = Artist.find(artist_list: params[:id])
-  erb :"events/new_plus_artist"
-end
-
-# Create Event for pre-existing Artist
-post "/artist/:id/events/create_plus_artist" do
-  @artist = Artist.find(params[:id]) 
-  @event = Event.create({title: params[:title], venue_name: params[:venue_name], artist_name: params[:artist_name]})
-  erb :"events/create_plus_artist"
-end
+# # New Event for a pre-existing Artist
+# get "/artist/:id/events/new_plus_artist" do
+#   @artist = Artist.find(artist_list: params[:id])
+#   erb :"events/new_plus_artist"
+# end
+#
+# # Create Event for pre-existing Artist
+# post "/artist/:id/events/create_plus_artist" do
+#   @artist = Artist.find(params[:id])
+#   @event = Event.create({title: params[:title], venue_name: params[:venue_name], artist_name: params[:artist_name]})
+#   erb :"events/create_plus_artist"
+# end
 
