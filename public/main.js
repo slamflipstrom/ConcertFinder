@@ -6,9 +6,9 @@ $(document).ready(function(){
     // By default, let the form be valid.
     var valid_form = true;
     
-    var paint_color = $("#paint_color").val();
+    var event_add = $(".add_event_new_artist").val();
     if (paint_color === ""){
-      $("#paint_color").next().show();
+      $(".add_event_new_artist").next().show();
       valid_form = false;
     }
     
